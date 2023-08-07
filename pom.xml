@@ -11,7 +11,7 @@
     <groupId>com.qiumu</groupId>
     <artifactId>novel</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>novel</name>
+    <name>Spring Boot 3构建的前后端分离小说系统</name>
     <description>novel</description>
     <properties>
         <java.version>17</java.version>
