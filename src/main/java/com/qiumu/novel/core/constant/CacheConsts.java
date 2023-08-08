@@ -6,7 +6,7 @@ import lombok.Getter;
  * 缓存相关常量
  *
  * @author qiumu
- * @date 2022/8/8
+ * @date 2023/8/8
  */
 public class CacheConsts {
 

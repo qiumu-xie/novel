@@ -23,7 +23,7 @@ import java.util.Map;
  * 缓存配置类
  *
  * @author qiumu
- * @date 2022/8/8
+ * @date 2023/8/8
  */
 @Configuration
 public class CacheConfig {

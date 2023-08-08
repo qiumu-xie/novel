@@ -17,4 +17,29 @@ spring:
       host: 127.0.0.1
       port: 6379
       password: 123456
+  elasticsearch:
+    uris:
+      - https://my-deployment-ce7ca3.es.us-central1.gcp.cloud.es.io:9243
+    username: elastic
+    password: Fy2JWjJ1hcO2mi1USFL1
+  rabbitmq:
+#    addresses: "amqp://guest:guest@47.106.243.172"
+    host: 192.168.10.100
+    port: 5672
+    username: xxyopen
+    password: test123456
+    virtual-host: novel
+    template:
+      retry:
+        # 开启重试
+        enabled: true
+        # 最大重试次数
+        max-attempts: 3
+        # 第一次和第二次重试之间的持续时间
+        initial-interval: "3s"
+
+mybatis-plus:
+  configuration:
+#    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 

@@ -76,4 +76,6 @@
             <appender-ref ref="FILE"/>
         </logger>
     </springProfile>
+
+<!--    <logger name="com.baomidou.mybatisplus" level="OFF"/>-->
 </configuration>
