@@ -22,6 +22,12 @@
     </properties>
     <dependencies>
 
+        <!-- 请求参数校验相关 -->
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+        </dependency>
+
         <!-- OpenAPI 3 -->
         <dependency>
             <groupId>org.springdoc</groupId>
