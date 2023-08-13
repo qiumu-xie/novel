@@ -12,10 +12,10 @@ spring:
       # 由于 Javascript 标准规定所有数字处理都应使用 64 位 IEEE 754 浮点值完成，
       # 结果是某些 64 位整数值无法准确表示（尾数只有 51 位宽）
       write-numbers-as-strings: true
-#  servlet:
-#    multipart:
-#      # 上传文件最大大小
-#      max-file-size: 5MB
+  servlet:
+    multipart:
+      # 上传文件最大大小
+      max-file-size: 5MB
 server:
   # 端口号
   port: 8888
@@ -29,6 +29,14 @@ novel:
     allow-origins:
       - http://localhost:1024
       - http://localhost:8080
+  # JWT 密钥
+  jwt:
+    secret: E66559580A1ADF48CDD928516062F12E
+  file:
+    # 文件上传配置
+    upload:
+      # 上传路径
+      path: /Users/qiumu/upload
 --- #---------------------数据库配置---------------------------
 spring:
   datasource:
