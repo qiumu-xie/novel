@@ -59,8 +59,11 @@ mybatis-plus:
 --- #---------------------中间件配置---------------------------
 spring:
   elasticsearch:
+    # 是否开启 Elasticsearch 搜索引擎功能：true-开启 false-不开启
+    enabled: true
+#    enabled: false
     uris:
-      - https://my-deployment-ce7ca3.es.us-central1.gcp.cloud.es.io:9243
+      - http://192.168.10.100:9200
     username: elastic
     password: Fy2JWjJ1hcO2mi1USFL1
 

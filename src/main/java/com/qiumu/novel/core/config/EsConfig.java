@@ -1,6 +1,7 @@
 package com.qiumu.novel.core.config;
 
 import co.elastic.clients.json.jackson.JacksonJsonpMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -11,6 +12,7 @@ import org.springframework.context.annotation.Configuration;
  * @date 2023/8/8
  */
 @Configuration
+@Slf4j
 public class EsConfig {
 
     /**
