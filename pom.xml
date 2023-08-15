@@ -19,9 +19,30 @@
         <mybatis-plus-generator.version>3.5.1</mybatis-plus-generator.version>
         <springdoc-openapi.version>2.0.0</springdoc-openapi.version>
         <jjwt.version>0.11.5</jjwt.version>
+        <sentinel.version>1.8.4</sentinel.version>
+        <redisson.version>3.19.1</redisson.version>
 
     </properties>
     <dependencies>
+
+        <!-- Redisson 相关 -->
+<!--        <dependency>-->
+<!--            <groupId>org.redisson</groupId>-->
+<!--            <artifactId>redisson-spring-boot-starter</artifactId>-->
+<!--            <version>${redisson.version}</version>-->
+<!--        </dependency>-->
+
+        <!-- sentinel 相关 -->
+        <dependency>
+            <groupId>com.alibaba.csp</groupId>
+            <artifactId>sentinel-core</artifactId>
+            <version>${sentinel.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.csp</groupId>
+            <artifactId>sentinel-parameter-flow-control</artifactId>
+            <version>${sentinel.version}</version>
+        </dependency>
 
         <!-- JWT 相关 -->
         <dependency>
@@ -112,13 +133,18 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+<!--
+    当对象被序列化并存到Redis缓存里时，使用的类加载器是C1，DevTools工具将会自动重新启动这个容器，并且创建一个新的类加载器 C2，
+    这时前后两次加载类的类加载器就不同了，两个不同类加载器加载的两个对象，JVM会认为这是两个不同的对象，因此也就无法完成类型的转换
+    Springboot为了实现代码热部署破坏了双亲委派模型，导致（如User类）的类加载器由AppClassLoader变了Springboot的自定义加载器RestartClassLoader。
+-->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-devtools</artifactId>-->
+<!--            <scope>runtime</scope>-->
+<!--            <optional>true</optional>-->
+<!--        </dependency>-->
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <scope>runtime</scope>
-            <optional>true</optional>
-        </dependency>
         <dependency>
             <groupId>com.mysql</groupId>
             <artifactId>mysql-connector-j</artifactId>
@@ -153,6 +179,15 @@
                             <artifactId>lombok</artifactId>
                         </exclude>
                     </excludes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <!--指定 Java 编译器的 -source 参数 -->
+                    <source>${java.version}</source>
+                    <!--指定 Java 编译器的 -target 参数 -->
+                    <target>${java.version}</target>
                 </configuration>
             </plugin>
         </plugins>

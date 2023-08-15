@@ -36,7 +36,7 @@ novel:
     # 文件上传配置
     upload:
       # 上传路径
-      path: /Users/qiumu/upload
+      path: D:/Users/qiumu/upload
 --- #---------------------数据库配置---------------------------
 spring:
   datasource:
