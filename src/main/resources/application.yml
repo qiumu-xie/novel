@@ -37,6 +37,7 @@ novel:
     upload:
       # 上传路径
       path: D:/Users/qiumu/upload
+
 --- #---------------------数据库配置---------------------------
 spring:
   datasource:
@@ -56,6 +57,7 @@ mybatis-plus:
   configuration:
     #    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
 --- #---------------------中间件配置---------------------------
 spring:
   elasticsearch:
@@ -98,6 +100,68 @@ xxl:
       logpath: logs/xxl-job/jobhandler
     ### xxl-job, access token
     accessToken: 123
+
+--- #----------------------安全配置----------------------------
+spring:
+  # Spring Boot 应用管理和监控
+  boot:
+    admin:
+      client:
+        # 是否开启 Spring Boot Admin 客户端
+        enabled: true
+        # Spring Boot Admin 服务端注册地址
+        url: http://localhost:8080
+        # Spring Boot Admin 服务端认证用户名
+        username: novel
+        # Spring Boot Admin 服务端认证密码
+        password: novel
+        instance:
+          #当前系统地址
+          service-url: http://127.0.0.1:8888
+          metadata:
+            # SBA Client
+            user.name: ${spring.security.user.name}
+            user.password: ${spring.security.user.password}
+  security:
+    user:
+      name: ENDPOINT_ADMIN
+      password: ENDPOINT_ADMIN
+      roles: ENDPOINT_ADMIN
+
+# Actuator 端点管理
+management:
+  # 端点公开配置
+  endpoints:
+    # 通过 HTTP 公开的 Web 端点
+    web:
+      exposure:
+        # 公开所有的 Web 端点
+        include: "*"
+  # 端点启用配置
+  endpoint:
+    logfile:
+      # 启用返回日志文件内容的端点
+      enabled: true
+      # 外部日志文件路径
+      external-file: logs/novel.log
+    health:
+      #显示health节点的详细信息
+      show-details: ALWAYS
+    shutdown:
+      #允许通过监控节点对应用程序进行关闭
+      enabled: true
+  info:
+    env:
+      # 公开所有以 info. 开头的环境属性
+      enabled: true
+  health:
+    rabbit:
+      # 关闭 rabbitmq 的健康检查
+      enabled: true
+    elasticsearch:
+      # 关闭 elasticsearch 的健康检查
+      enabled: true
+
 --- #------------------- dev 特定配置---------------------------
 spring:
   config:

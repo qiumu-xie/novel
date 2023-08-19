@@ -6,15 +6,21 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.cache.CacheManager;
+import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.web.SecurityFilterChain;
 
 import java.util.Map;
 
 @SpringBootApplication
 @MapperScan("com.qiumu.novel.dao.mapper")
 @EnableCaching
+@EnableScheduling
 @Slf4j
 public class NovelApplication {
 
@@ -33,6 +39,15 @@ public class NovelApplication {
             });
 
         };
+    }
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http.csrf(csrf -> csrf.disable())
+            .securityMatcher(EndpointRequest.toAnyEndpoint())
+            .authorizeHttpRequests(requests -> requests.anyRequest().hasRole("ENDPOINT_ADMIN"));
+        http.httpBasic(Customizer.withDefaults());
+        return http.build();
     }
 
 }
